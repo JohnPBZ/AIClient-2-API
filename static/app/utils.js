@@ -60,6 +60,12 @@ function getBaseProviderConfigs() {
             icon: 'fa-user-secret'
         },
         { 
+            id: 'supergrok-custom', 
+            name: t('dashboard.routing.nodeName.supergrok'), 
+            icon: 'fa-user-astronaut',
+            visible: supportedProviders.includes('supergrok-custom') 
+        },
+        { 
             id: 'openai-custom', 
             name: t('dashboard.routing.nodeName.openai'), 
             icon: 'fa-microchip'
@@ -420,6 +426,32 @@ function getProviderTypeFields(providerType) {
             },
             {
                 id: 'GROK_BASE_URL',
+                label: `${t('modal.provider.field.grokBaseUrl')} <span class="optional-tag">${t('config.optional')}</span>`,
+                type: 'text',
+                placeholder: 'https://grok.com'
+            }
+        ],
+        'supergrok-custom': [
+            {
+                id: 'SUPERGROK_COOKIE_TOKEN',
+                label: t('modal.provider.field.ssoToken'),
+                type: 'password',
+                placeholder: 'sso cookie token'
+            },
+            {
+                id: 'SUPERGROK_CF_CLEARANCE',
+                label: `${t('modal.provider.field.cfClearance')} <span class="optional-tag">${t('config.optional')}</span>`,
+                type: 'text',
+                placeholder: 'cf_clearance cookie value'
+            },
+            {
+                id: 'SUPERGROK_USER_AGENT',
+                label: `${t('modal.provider.field.userAgent')} <span class="optional-tag">${t('config.optional')}</span>`,
+                type: 'text',
+                placeholder: 'Mozilla/5.0 ...'
+            },
+            {
+                id: 'SUPERGROK_BASE_URL',
                 label: `${t('modal.provider.field.grokBaseUrl')} <span class="optional-tag">${t('config.optional')}</span>`,
                 type: 'text',
                 placeholder: 'https://grok.com'

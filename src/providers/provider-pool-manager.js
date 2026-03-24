@@ -59,6 +59,7 @@ export class ProviderPoolManager {
         'openaiResponses-custom': 'gpt-4o-mini',
         'forward-api': 'gpt-4o-mini',
         'grok-custom': 'grok-4.1-mini',
+        'supergrok-custom': 'grok-4.1-mini',
     };
 
     constructor(providerPools, options = {}) {
@@ -2368,4 +2369,3 @@ export class ProviderPoolManager {
     }
 
 }
-

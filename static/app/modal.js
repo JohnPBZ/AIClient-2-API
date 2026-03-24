@@ -1250,6 +1250,22 @@ function getFieldOrder(provider) {
         'lastRefreshTime', 'lastSuccessTime'
     ];
     
+    // 从 getProviderTypeFields 获取字段顺序映射
+    const fieldOrderMap = {
+        'openai-custom': ['OPENAI_API_KEY', 'OPENAI_BASE_URL'],
+        'openaiResponses-custom': ['OPENAI_API_KEY', 'OPENAI_BASE_URL'],
+        'claude-custom': ['CLAUDE_API_KEY', 'CLAUDE_BASE_URL'],
+        'gemini-cli-oauth': ['PROJECT_ID', 'GEMINI_OAUTH_CREDS_FILE_PATH', 'GEMINI_BASE_URL'],
+        'claude-kiro-oauth': ['KIRO_OAUTH_CREDS_FILE_PATH', 'KIRO_BASE_URL', 'KIRO_REFRESH_URL', 'KIRO_REFRESH_IDC_URL'],
+        'openai-qwen-oauth': ['QWEN_OAUTH_CREDS_FILE_PATH', 'QWEN_BASE_URL', 'QWEN_OAUTH_BASE_URL'],
+        'gemini-antigravity': ['PROJECT_ID', 'ANTIGRAVITY_OAUTH_CREDS_FILE_PATH', 'ANTIGRAVITY_BASE_URL_DAILY', 'ANTIGRAVITY_BASE_URL_AUTOPUSH'],
+        'openai-iflow': ['IFLOW_OAUTH_CREDS_FILE_PATH', 'IFLOW_BASE_URL'],
+        'openai-codex-oauth': ['CODEX_OAUTH_CREDS_FILE_PATH', 'CODEX_EMAIL', 'CODEX_BASE_URL'],
+        'grok-custom': ['GROK_COOKIE_TOKEN', 'GROK_CF_CLEARANCE', 'GROK_USER_AGENT', 'GROK_BASE_URL'],
+        'supergrok-custom': ['SUPERGROK_COOKIE_TOKEN', 'SUPERGROK_CF_CLEARANCE', 'SUPERGROK_USER_AGENT', 'SUPERGROK_BASE_URL'],
+        'forward-api': ['FORWARD_API_KEY', 'FORWARD_BASE_URL', 'FORWARD_HEADER_NAME', 'FORWARD_HEADER_VALUE_PREFIX']
+    };
+    
     // 尝试从当前模态框上下文中获取提供商类型
     let providerType = currentProviderType;
     
@@ -1273,6 +1289,8 @@ function getFieldOrder(provider) {
             providerType = 'openai-codex-oauth';
         } else if (provider.GROK_COOKIE_TOKEN) {
             providerType = 'grok-custom';
+        } else if (provider.SUPERGROK_COOKIE_TOKEN) {
+            providerType = 'supergrok-custom';
         } else if (provider.FORWARD_API_KEY) {
             providerType = 'forward-api';
         }

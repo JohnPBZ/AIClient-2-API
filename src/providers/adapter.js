@@ -9,6 +9,7 @@ import { IFlowApiService } from './openai/iflow-core.js';
 import { CodexApiService } from './openai/codex-core.js';
 import { ForwardApiService } from './forward/forward-core.js';
 import { GrokApiService } from './grok/grok-core.js';
+import { SuperGrokApiService } from './grok/supergrok-core.js';
 import { MODEL_PROVIDER } from '../utils/constants.js';
 import logger from '../utils/logger.js';
 
@@ -688,6 +689,54 @@ export class GrokApiServiceAdapter extends ApiServiceAdapter {
     }
 }
 
+// SuperGrok API 服务适配器
+export class SuperGrokApiServiceAdapter extends ApiServiceAdapter {
+    constructor(config) {
+        super();
+        this.superGrokApiService = new SuperGrokApiService(config);
+    }
+
+    async generateContent(model, requestBody) {
+        if (!this.superGrokApiService.isInitialized) {
+            await this.superGrokApiService.initialize();
+        }
+        return this.superGrokApiService.generateContent(model, requestBody);
+    }
+
+    async *generateContentStream(model, requestBody) {
+        if (!this.superGrokApiService.isInitialized) {
+            await this.superGrokApiService.initialize();
+        }
+        yield* this.superGrokApiService.generateContentStream(model, requestBody);
+    }
+
+    async listModels() {
+        if (!this.superGrokApiService.isInitialized) {
+            await this.superGrokApiService.initialize();
+        }
+        return this.superGrokApiService.listModels();
+    }
+
+    async refreshToken() {
+        return this.superGrokApiService.refreshToken();
+    }
+
+    async forceRefreshToken() {
+        return this.superGrokApiService.refreshToken();
+    }
+
+    isExpiryDateNear() {
+        return this.superGrokApiService.isExpiryDateNear();
+    }
+
+    async getUsageLimits() {
+        if (!this.superGrokApiService.isInitialized) {
+            await this.superGrokApiService.initialize();
+        }
+        return this.superGrokApiService.getUsageLimits();
+    }
+}
+
 // 注册所有内置适配器
 registerAdapter(MODEL_PROVIDER.OPENAI_CUSTOM, OpenAIApiServiceAdapter);
 registerAdapter(MODEL_PROVIDER.OPENAI_CUSTOM_RESPONSES, OpenAIResponsesApiServiceAdapter);
@@ -697,6 +746,7 @@ registerAdapter(MODEL_PROVIDER.ANTIGRAVITY, AntigravityApiServiceAdapter);
 registerAdapter(MODEL_PROVIDER.KIRO_API, KiroApiServiceAdapter);
 registerAdapter(MODEL_PROVIDER.CODEX_API, CodexApiServiceAdapter);
 registerAdapter(MODEL_PROVIDER.GROK_CUSTOM, GrokApiServiceAdapter);
+registerAdapter(MODEL_PROVIDER.SUPERGROK_CUSTOM, SuperGrokApiServiceAdapter);
 // registerAdapter(MODEL_PROVIDER.FORWARD_API, ForwardApiServiceAdapter);
 // registerAdapter(MODEL_PROVIDER.QWEN_API, QwenApiServiceAdapter);
 // registerAdapter(MODEL_PROVIDER.IFLOW_API, IFlowApiServiceAdapter);
@@ -766,4 +816,3 @@ export function getServiceAdapter(config) {
     }
     return serviceInstances[providerKey];
 }
-

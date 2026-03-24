@@ -88,6 +88,34 @@ function getConfiguredSupportedModelsFromPool(providerPoolManager, providerType)
         providerPoolManager.providerStatus[providerType]
             .flatMap(providerStatus => getConfiguredSupportedModels(providerType, providerStatus.config))
     )].sort((a, b) => a.localeCompare(b));
+    
+export const MODEL_PROTOCOL_PREFIX = {
+    // Model provider constants
+    GEMINI: 'gemini',
+    OPENAI: 'openai',
+    OPENAI_RESPONSES: 'openaiResponses',
+    CLAUDE: 'claude',
+    CODEX: 'codex',
+    FORWARD: 'forward',
+    GROK: 'grok',
+    SUPERGROK: 'supergrok',
+}
+
+export const MODEL_PROVIDER = {
+    // Model provider constants
+    GEMINI_CLI: 'gemini-cli-oauth',
+    ANTIGRAVITY: 'gemini-antigravity',
+    OPENAI_CUSTOM: 'openai-custom',
+    OPENAI_CUSTOM_RESPONSES: 'openaiResponses-custom',
+    CLAUDE_CUSTOM: 'claude-custom',
+    KIRO_API: 'claude-kiro-oauth',
+    QWEN_API: 'openai-qwen-oauth',
+    IFLOW_API: 'openai-iflow',
+    CODEX_API: 'openai-codex-oauth',
+    FORWARD_API: 'forward-api',
+    GROK_CUSTOM: 'grok-custom',
+    SUPERGROK_CUSTOM: 'supergrok-custom',
+    AUTO: 'auto',
 }
 
 function getCustomModelEntriesForProvider(config, providerType = null, options = {}) {

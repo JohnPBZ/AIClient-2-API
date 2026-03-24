@@ -41,6 +41,7 @@ const CORE_MODEL_MAPPING = {
     'grok-4.20-auto': { name: 'grok-420', mode: 'MODEL_MODE_AUTO', modeId: 'auto' },
     'grok-4.20-fast': { name: 'grok-420', mode: 'MODEL_MODE_FAST', modeId: 'fast' },
     'grok-4.20-expert': { name: 'grok-420', mode: 'MODEL_MODE_EXPERT', modeId: 'expert' },
+    'grok-4.20-beta':   { name: 'grok-420', mode: 'MODEL_MODE_EXPERT', modeId: 'expert' },
     'grok-4.20-heavy': { name: 'grok-420', mode: 'MODEL_MODE_HEAVY', modeId: 'heavy' },
     'grok-imagine-1.0-fast': { name: 'imagine-image', mode: 'MODEL_MODE_FAST', modeId: 'fast' },
     'grok-imagine-1.0-fast-edit': { name: 'imagine-image', mode: 'MODEL_MODE_FAST', modeId: 'fast' },
