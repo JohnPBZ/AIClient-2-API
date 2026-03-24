@@ -24,6 +24,8 @@ export class ProviderPoolManager {
         'openai-codex-oauth': 'gpt-5-codex-mini',
         'openaiResponses-custom': 'gpt-4o-mini',
         'forward-api': 'gpt-4o-mini',
+        'grok-custom': 'grok-3',
+        'supergrok-custom': 'grok-3',
     };
 
     constructor(providerPools, options = {}) {
@@ -1911,4 +1913,3 @@ export class ProviderPoolManager {
     }
 
 }
-

@@ -6,7 +6,7 @@ import { readUsageCache, writeUsageCache, readProviderUsageCache, updateProvider
 import { PROVIDER_MAPPINGS } from '../utils/provider-utils.js';
 import path from 'path';
 
-const supportedProviders = ['claude-kiro-oauth', 'gemini-cli-oauth', 'gemini-antigravity', 'openai-codex-oauth', 'grok-custom'];
+const supportedProviders = ['claude-kiro-oauth', 'gemini-cli-oauth', 'gemini-antigravity', 'openai-codex-oauth', 'grok-custom', 'supergrok-custom'];
 
 
 /**
@@ -184,6 +184,14 @@ async function getAdapterUsage(adapter, providerType) {
     }
 
     if (providerType === 'grok-custom') {
+        if (typeof adapter.getUsageLimits === 'function') {
+            const rawUsage = await adapter.getUsageLimits();
+            return formatGrokUsage(rawUsage);
+        }
+        throw new Error('This adapter does not support usage query');
+    }
+
+    if (providerType === 'supergrok-custom') {
         if (typeof adapter.getUsageLimits === 'function') {
             const rawUsage = await adapter.getUsageLimits();
             return formatGrokUsage(rawUsage);

@@ -19,6 +19,7 @@ export class UsageService {
             [MODEL_PROVIDER.ANTIGRAVITY]: this.getAntigravityUsage.bind(this),
             [MODEL_PROVIDER.CODEX_API]: this.getCodexUsage.bind(this),
             [MODEL_PROVIDER.GROK_CUSTOM]: this.getGrokUsage.bind(this),
+            [MODEL_PROVIDER.SUPERGROK_CUSTOM]: this.getSuperGrokUsage.bind(this),
         };
     }
 
@@ -206,6 +207,27 @@ export class UsageService {
         }
         
         throw new Error(`Grok 服务实例不支持用量查询: ${providerKey}`);
+    }
+
+    /**
+     * 获取 SuperGrok 提供商的用量信息
+     * @param {string} [uuid] - 可选的提供商实例 UUID
+     * @returns {Promise<Object>} SuperGrok 用量信息
+     */
+    async getSuperGrokUsage(uuid = null) {
+        const providerKey = uuid ? MODEL_PROVIDER.SUPERGROK_CUSTOM + uuid : MODEL_PROVIDER.SUPERGROK_CUSTOM;
+        const adapter = serviceInstances[providerKey];
+        
+        if (!adapter) {
+            throw new Error(`SuperGrok 服务实例未找到: ${providerKey}`);
+        }
+        
+        if (typeof adapter.getUsageLimits === 'function') {
+            const rawUsage = await adapter.getUsageLimits();
+            return formatGrokUsage(rawUsage);
+        }
+        
+        throw new Error(`SuperGrok 服务实例不支持用量查询: ${providerKey}`);
     }
 
     /**
