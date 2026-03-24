@@ -21,6 +21,17 @@ describe('SuperGrok provider integration', () => {
         expect(typeof converter.convertRequest).toBe('function');
     });
 
+    test('supports converting OpenAI request to supergrok protocol', () => {
+        const converter = ConverterFactory.getConverter('openai');
+        const result = converter.convertRequest({
+            model: 'grok-4.20-beta',
+            messages: [{ role: 'user', content: 'hi' }]
+        }, 'supergrok');
+
+        expect(result).toBeTruthy();
+        expect(result.model).toBe('grok-4.20-beta');
+    });
+
     test('wires SuperGrok adapter registration and core alias', () => {
         const adapterPath = path.join(process.cwd(), 'src/providers/adapter.js');
         const superGrokCorePath = path.join(process.cwd(), 'src/providers/grok/supergrok-core.js');
