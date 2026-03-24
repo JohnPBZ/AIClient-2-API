@@ -45,7 +45,8 @@ const CORE_MODEL_MAPPING = {
     'grok-4.1-fast': { name: 'grok-4-1-thinking-1129', mode: 'MODEL_MODE_FAST' },
     'grok-4.1-expert': { name: 'grok-4-1-thinking-1129', mode: 'MODEL_MODE_EXPERT' },
     'grok-4.1-thinking': { name: 'grok-4-1-thinking-1129', mode: 'MODEL_MODE_GROK_4_1_THINKING' },
-    'grok-4.20-beta': { name: 'grok-420', mode: 'MODEL_MODE_GROK_420' },
+    'grok-4.20-beta': { name: 'grok-420', mode: 'MODEL_MODE_EXPERT', modeId: 'expert' },
+    'grok-4.20-fast': { name: 'grok-420', mode: 'MODEL_MODE_FAST', modeId: 'fast' },
     'grok-imagine-1.0': { name: 'grok-3', mode: 'MODEL_MODE_FAST' },
     'grok-imagine-1.0-edit': { name: 'imagine-image-edit', mode: 'MODEL_MODE_FAST' },
     'grok-imagine-1.0-video': { name: 'grok-3', mode: 'MODEL_MODE_FAST' }
@@ -420,6 +421,14 @@ export class GrokApiService {
             "responseMetadata": { "requestModelDetails": { "modelId": mapping.name }, "modelConfigOverride": modelConfigOverride },
             "returnImageBytes": false, "returnRawGrokInXaiRequest": false, "sendFinalMetadata": true, "temporary": true, "toolOverrides": toolOverrides,
         };
+
+        if (mapping.name === 'grok-420') {
+            payload.responseMetadata = {};
+            delete payload.modelName;
+            delete payload.modelMode;
+            payload.modeId = mapping.modeId || 'expert';
+            payload.enable420 = true;
+        }
 
         if (isMediaModel && !modelLower.includes('video')) {
             payload.enable_nsfw = isNsfw;

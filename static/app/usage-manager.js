@@ -898,7 +898,8 @@ function getProviderDisplayName(providerType) {
         'gemini-antigravity': 'Gemini Antigravity',
         'openai-codex-oauth': 'Codex OAuth',
         'openai-qwen-oauth': 'Qwen OAuth',
-        'grok-custom': 'Grok Reverse'
+        'grok-custom': 'Grok Reverse',
+        'supergrok-custom': 'SuperGrok Reverse'
     };
     return names[providerType] || providerType;
 }
@@ -924,7 +925,8 @@ function getProviderIcon(providerType) {
         'gemini-antigravity': 'fas fa-rocket',
         'openai-codex-oauth': 'fas fa-terminal',
         'openai-qwen-oauth': 'fas fa-code',
-        'grok-custom': 'fas fa-brain'
+        'grok-custom': 'fas fa-brain',
+        'supergrok-custom': 'fas fa-user-astronaut'
     };
     return icons[providerType] || 'fas fa-server';
 }

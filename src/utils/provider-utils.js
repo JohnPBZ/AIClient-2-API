@@ -88,6 +88,17 @@ export const PROVIDER_MAPPINGS = [
         displayName: 'Grok Reverse',
         needsProjectId: false,
         urlKeys: ['GROK_BASE_URL', 'GROK_CF_CLEARANCE', 'GROK_USER_AGENT']
+    },
+    {
+        // SuperGrok Reverse 配置
+        dirName: 'supergrok',
+        patterns: ['configs/supergrok/', '/supergrok/'],
+        providerType: 'supergrok-custom',
+        credPathKey: 'SUPERGROK_COOKIE_TOKEN',
+        defaultCheckModel: 'grok-3',
+        displayName: 'SuperGrok Reverse',
+        needsProjectId: false,
+        urlKeys: ['SUPERGROK_BASE_URL', 'SUPERGROK_CF_CLEARANCE', 'SUPERGROK_USER_AGENT']
     }
 ];
 

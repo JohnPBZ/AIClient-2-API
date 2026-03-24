@@ -58,6 +58,7 @@ export const MODEL_PROTOCOL_PREFIX = {
     CODEX: 'codex',
     FORWARD: 'forward',
     GROK: 'grok',
+    SUPERGROK: 'supergrok',
 }
 
 export const MODEL_PROVIDER = {
@@ -73,6 +74,7 @@ export const MODEL_PROVIDER = {
     CODEX_API: 'openai-codex-oauth',
     FORWARD_API: 'forward-api',
     GROK_CUSTOM: 'grok-custom',
+    SUPERGROK_CUSTOM: 'supergrok-custom',
     AUTO: 'auto',
 }
 
