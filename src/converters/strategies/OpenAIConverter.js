@@ -61,6 +61,7 @@ export class OpenAIConverter extends BaseConverter {
             case MODEL_PROTOCOL_PREFIX.CODEX:
                 return this.toCodexRequest(data);
             case MODEL_PROTOCOL_PREFIX.GROK:
+            case MODEL_PROTOCOL_PREFIX.SUPERGROK:
                 return this.toGrokRequest(data);
             default:
                 throw new Error(`Unsupported target protocol: ${targetProtocol}`);
