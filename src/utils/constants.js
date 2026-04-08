@@ -43,6 +43,7 @@ export const RETRY = {
 
 // 协议前缀常量
 export const MODEL_PROTOCOL_PREFIX = {
+    // Model provider constants
     GEMINI: 'gemini',
     OPENAI: 'openai',
     OPENAI_RESPONSES: 'openaiResponses',
@@ -50,10 +51,12 @@ export const MODEL_PROTOCOL_PREFIX = {
     CODEX: 'codex',
     FORWARD: 'forward',
     GROK: 'grok',
-};
+    SUPERGROK: 'supergrok',
+}
 
 // 提供商标识符常量
 export const MODEL_PROVIDER = {
+    // Model provider constants
     GEMINI_CLI: 'gemini-cli-oauth',
     ANTIGRAVITY: 'gemini-antigravity',
     OPENAI_CUSTOM: 'openai-custom',
@@ -65,5 +68,6 @@ export const MODEL_PROVIDER = {
     CODEX_API: 'openai-codex-oauth',
     FORWARD_API: 'forward-api',
     GROK_CUSTOM: 'grok-custom',
+    SUPERGROK_CUSTOM: 'supergrok-custom',
     AUTO: 'auto',
-};
+}
