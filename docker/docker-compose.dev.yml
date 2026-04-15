@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       # 从项目根目录挂载 configs，使用绝对路径确保正确
-      - ../configs:/app/configs
+      - ./configs:/app/configs
       # 挂载源代码以支持热重载，但保留 node_modules
       - ../src:/app/src:ro
       - ../package.json:/app/package.json:ro
